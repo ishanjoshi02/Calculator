@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +22,7 @@ public class Calculator implements ActionListener{
 		int i;
 		String str;
 		f = new JFrame("Calculator");
+		f.setLayout(new BorderLayout());
 		tf = new JTextField("Calculator is ready at your Service");
 		tf.setSize(398, 100);
 		pl = new JPanel(new GridLayout(4, 4));
@@ -57,9 +59,11 @@ public class Calculator implements ActionListener{
 				str = "=";
 			else 
 				str = "0";
+			B[i] = new JButton(str);
 			B[i].addActionListener(this);
 			pl.add(B[i]);
 		}
+		tf.addActionListener(this);
 		f.add(tf);
 		f.add(pl);
 		f.setSize(400, 600);
@@ -68,7 +72,8 @@ public class Calculator implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.equals(tf)==true||e.equals(B[3]))
+			tf.setText(null);
 	}
 	
 }
