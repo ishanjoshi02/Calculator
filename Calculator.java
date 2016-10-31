@@ -1,9 +1,11 @@
 
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,11 +24,11 @@ public class Calculator implements ActionListener{
 		int i;
 		String str;
 		f = new JFrame("Calculator");
-		f.setLayout(new BorderLayout());
-		tf = new JTextField("Calculator is ready at your Service");
-		tf.setSize(398, 100);
+		f.setLayout(new GridLayout(2, 1));
+		tf = new JTextField();
 		pl = new JPanel(new GridLayout(4, 4));
 		for(i=0;i<16;i++) {
+			//Need to do this using queue
 			if(i==0)
 				str = "7";
 			else if(i==1) 
@@ -66,14 +68,14 @@ public class Calculator implements ActionListener{
 		tf.addActionListener(this);
 		f.add(tf);
 		f.add(pl);
-		f.setSize(400, 600);
+		f.setSize(400, 400);
 		f.setVisible(true);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.equals(tf)==true||e.equals(B[3]))
-			tf.setText(null);
+			tf.setText(" ");
 	}
 	
 }
