@@ -17,8 +17,14 @@ public class Calculator implements ActionListener{
 	JTextField tf;
 	JPanel pl;
 	String Operation;
-	Integer Answer;
+	Float Answer;
 	JButton[] B = new JButton[16];
+	private boolean isFloat(Float a) {
+		Integer temp = Integer.valueOf(String.valueOf(a)) * 10;
+		if(temp==Integer.valueOf(String.valueOf(a*10)))
+			return false;
+		return true;
+	}
 	public Calculator() {
 		// TODO Auto-generated constructor stub
 		int i;
@@ -72,13 +78,13 @@ public class Calculator implements ActionListener{
 		tf.setFont(new Font("Roboto",13,18));
 		f.add(tf,BorderLayout.NORTH);
 		f.add(pl);
-		f.setSize(400, 400);
+		f.setSize(400,400);
 		f.setVisible(true);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==B[0]) 
+		if(e.getSource()==B[0])
 			tf.setText(tf.getText()+"7");
 		else if(e.getSource()==B[1])
 			tf.setText(tf.getText()+"8");
@@ -93,7 +99,7 @@ public class Calculator implements ActionListener{
 		else if(e.getSource()==B[6])
 			tf.setText(tf.getText()+"6");
 		else if(e.getSource()==B[7]) {
-			Answer = Integer.parseInt(tf.getText());
+			Answer = Float.parseFloat(tf.getText());
 			Operation = "x";
 			tf.setText(null);
 		}
@@ -104,33 +110,37 @@ public class Calculator implements ActionListener{
 		else if(e.getSource()==B[10])
 			tf.setText(tf.getText()+"3");
 		else if(e.getSource()==B[11]) {
-			Answer = Integer.parseInt(tf.getText());
+			Answer = Float.parseFloat(tf.getText());
 			Operation = "+";
 			tf.setText(null);
 		}
 		else if(e.getSource()==B[12]) 
 			tf.setText(tf.getText()+"0");
 		else if(e.getSource()==B[13]) {
-			Answer = Integer.parseInt(tf.getText());
+			Answer = Float.parseFloat(tf.getText());
 			Operation = "-";
 			tf.setText(null);
 		}
 		else if(e.getSource()==B[14]) {
-			Answer = Integer.parseInt(tf.getText());
+			Answer = Float.parseFloat(tf.getText());
 			Operation = "%";
 			tf.setText(null);
 		}
 		else {
-			if(Operation=="+") 
-				Answer += Integer.parseInt(tf.getText());
-			else if(Operation=="-")
-				Answer -= Integer.parseInt(tf.getText());
-			else if(Operation=="x")
-				Answer *= Integer.parseInt(tf.getText());
-			else 
-				Answer /= Integer.parseInt(tf.getText());
-			tf.setText(String.valueOf(Answer));
-
+			switch (Operation) {
+			case "+" :
+				tf.setText(String.valueOf(Answer+Float.parseFloat(tf.getText())));		
+				break;
+			case "-" :
+				tf.setText(String.valueOf(Answer-Float.parseFloat(tf.getText())));		
+				break;
+			case "x" :
+				tf.setText(String.valueOf(Answer*Float.parseFloat(tf.getText())));
+				break;
+			case "%" :
+				tf.setText(String.valueOf(Answer/Float.parseFloat(tf.getText())));
+				break;
+			}
 		}
 	}
 	
