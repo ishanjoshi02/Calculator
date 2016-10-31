@@ -1,12 +1,12 @@
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +16,7 @@ public class Calculator implements ActionListener{
 	JFrame f;
 	JTextField tf;
 	JPanel pl;
-	Icon i;
+	String Operation;
 	Integer Answer;
 	JButton[] B = new JButton[16];
 	public Calculator() {
@@ -24,8 +24,9 @@ public class Calculator implements ActionListener{
 		int i;
 		String str;
 		f = new JFrame("Calculator");
-		f.setLayout(new GridLayout(2, 1));
+		f.setFont(new Font("Noto",13,26));
 		tf = new JTextField();
+		tf.setPreferredSize(new Dimension(400, 100));
 		pl = new JPanel(new GridLayout(4, 4));
 		for(i=0;i<16;i++) {
 			//Need to do this using queue
@@ -54,19 +55,22 @@ public class Calculator implements ActionListener{
 			else if(i==11)
 				str = "+";
 			else if(i==12)
-				str = "-";
-			else if(i==13) 
-				str = "%";
-			else if(i==14)
-				str = "=";
-			else 
 				str = "0";
+			else if(i==13) 
+				str = "-";
+			else if(i==14)
+				str = "%";
+			else 
+				str = "=";
 			B[i] = new JButton(str);
+			B[i].setFont(new Font("Roboto", 12, 12));
+			B[i].setBackground(new Color(0,188,212));
 			B[i].addActionListener(this);
 			pl.add(B[i]);
 		}
-		tf.addActionListener(this);
-		f.add(tf);
+		tf.setForeground(new Color(0,150,136));
+		tf.setFont(new Font("Roboto",13,18));
+		f.add(tf,BorderLayout.NORTH);
 		f.add(pl);
 		f.setSize(400, 400);
 		f.setVisible(true);
@@ -74,8 +78,60 @@ public class Calculator implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.equals(tf)==true||e.equals(B[3]))
-			tf.setText(" ");
+		if(e.getSource()==B[0]) 
+			tf.setText(tf.getText()+"7");
+		else if(e.getSource()==B[1])
+			tf.setText(tf.getText()+"8");
+		else if(e.getSource()==B[2])
+			tf.setText(tf.getText()+"9");
+		else if(e.getSource()==B[3])
+			tf.setText(null);
+		else if(e.getSource()==B[4])
+			tf.setText(tf.getText()+"4");
+		else if(e.getSource()==B[5])
+			tf.setText(tf.getText()+"5");
+		else if(e.getSource()==B[6])
+			tf.setText(tf.getText()+"6");
+		else if(e.getSource()==B[7]) {
+			Answer = Integer.parseInt(tf.getText());
+			Operation = "x";
+			tf.setText(null);
+		}
+		else if(e.getSource()==B[8])
+			tf.setText(tf.getText()+"1");
+		else if(e.getSource()==B[9])
+			tf.setText(tf.getText()+"2");
+		else if(e.getSource()==B[10])
+			tf.setText(tf.getText()+"3");
+		else if(e.getSource()==B[11]) {
+			Answer = Integer.parseInt(tf.getText());
+			Operation = "+";
+			tf.setText(null);
+		}
+		else if(e.getSource()==B[12]) 
+			tf.setText(tf.getText()+"0");
+		else if(e.getSource()==B[13]) {
+			Answer = Integer.parseInt(tf.getText());
+			Operation = "-";
+			tf.setText(null);
+		}
+		else if(e.getSource()==B[14]) {
+			Answer = Integer.parseInt(tf.getText());
+			Operation = "%";
+			tf.setText(null);
+		}
+		else {
+			if(Operation=="+") 
+				Answer += Integer.parseInt(tf.getText());
+			else if(Operation=="-")
+				Answer -= Integer.parseInt(tf.getText());
+			else if(Operation=="x")
+				Answer *= Integer.parseInt(tf.getText());
+			else 
+				Answer /= Integer.parseInt(tf.getText());
+			tf.setText(String.valueOf(Answer));
+
+		}
 	}
 	
 }
