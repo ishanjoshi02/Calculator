@@ -27,7 +27,7 @@ public class Calculator implements ActionListener,KeyListener{
 		String str;
 		f = new JFrame("Calculator");
 		f.setFont(new Font("Noto",13,26));
-		tf = new JTextField("Please Don't use Keyboard, still working on it\n Press 'C' to continue");
+		tf = new JTextField();
 		tf.setPreferredSize(new Dimension(400, 100));
 		pl = new JPanel(new GridLayout(4, 4));
 		for(i=0;i<16;i++) {
@@ -157,7 +157,13 @@ public class Calculator implements ActionListener,KeyListener{
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getKeyChar()=='+'||
+				e.getKeyChar()=='*'||
+				e.getKeyChar()=='x'||
+				e.getKeyChar()=='/'||
+				e.getKeyChar()=='-'
+				)
+			tf.setText(null);
 	}
 	@Override
 	public void keyTyped(KeyEvent k) {
@@ -174,7 +180,7 @@ public class Calculator implements ActionListener,KeyListener{
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "/";
 		}
-		else if(k.getKeyChar()=='x') {
+		else if(k.getKeyChar()=='x'||k.getKeyChar()=='x') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "x";
 		}
