@@ -180,7 +180,7 @@ public class Calculator implements ActionListener,KeyListener{
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "/";
 		}
-		else if(k.getKeyChar()=='x'||k.getKeyChar()=='x') {
+		else if(k.getKeyChar()=='x'||k.getKeyChar()=='*') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "x";
 		}
