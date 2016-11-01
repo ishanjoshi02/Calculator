@@ -27,7 +27,7 @@ public class Calculator implements ActionListener,KeyListener{
 		String str;
 		f = new JFrame("Calculator");
 		f.setFont(new Font("Noto",13,26));
-		tf = new JTextField("Please Don't use Keyboard, still working on it, Press 'C' to continue");
+		tf = new JTextField("Please Don't use Keyboard, still working on it,\n Press 'C' to continue");
 		tf.setPreferredSize(new Dimension(400, 100));
 		pl = new JPanel(new GridLayout(4, 4));
 		for(i=0;i<16;i++) {
