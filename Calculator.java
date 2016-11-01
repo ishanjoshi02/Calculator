@@ -27,7 +27,7 @@ public class Calculator implements ActionListener,KeyListener{
 		String str;
 		f = new JFrame("Calculator");
 		f.setFont(new Font("Noto",13,26));
-		tf = new JTextField();
+		tf = new JTextField("Please Don't use Keyboard, still working on it\n Press 'C' to continue");
 		tf.setPreferredSize(new Dimension(400, 100));
 		pl = new JPanel(new GridLayout(4, 4));
 		for(i=0;i<16;i++) {
@@ -81,6 +81,7 @@ public class Calculator implements ActionListener,KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
 		if(e.getSource()==B[0])
 			tf.setText(tf.getText()+"7");
 		else if(e.getSource()==B[1])
@@ -126,16 +127,24 @@ public class Calculator implements ActionListener,KeyListener{
 		else {
 			switch (Operation) {
 			case "+" :
-				tf.setText(String.valueOf(Answer+Float.parseFloat(tf.getText())));		
+				Float temp;
+				temp = Float.parseFloat(tf.getText());
+				Answer += temp;
+				tf.setText(String.valueOf(Answer));	
 				break;
 			case "-" :
-				tf.setText(String.valueOf(Answer-Float.parseFloat(tf.getText())));		
+				temp = Float.parseFloat(tf.getText());
+				Answer -= temp;
+				tf.setText(String.valueOf(Answer));	
 				break;
 			case "x" :
-				tf.setText(String.valueOf(Answer*Float.parseFloat(tf.getText())));
+				temp = Float.parseFloat(tf.getText());
+				Answer *= temp;
+				tf.setText(String.valueOf(Answer));	
 				break;
-			case "/" :
-				tf.setText(String.valueOf(Answer/Float.parseFloat(tf.getText())));
+			case "%" :
+				temp = Float.parseFloat(tf.getText());
+				tf.setText(String.valueOf(Answer/temp));	
 				break;
 			}
 		}
@@ -147,45 +156,29 @@ public class Calculator implements ActionListener,KeyListener{
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
-	/*	// TODO Auto-generated method stub
-		if(e.getKeyChar()=='+'||e.getKeyChar()=='-'||e.getKeyChar()=='x'||e.getKeyChar()=='/')
-			if(e.getKeyChar()=='1'||
-					e.getKeyChar()=='2'||
-					e.getKeyChar()=='3'||
-					e.getKeyChar()=='4'||
-					e.getKeyChar()=='5'||
-					e.getKeyChar()=='6'||
-					e.getKeyChar()=='7'||
-					e.getKeyChar()=='8'||
-					e.getKeyChar()=='9'||
-					e.getKeyChar()=='0'||
-					e.getKeyChar()=='.')
-			tf.setText(null);*/
+		// TODO Auto-generated method stub
+		
 	}
 	@Override
 	public void keyTyped(KeyEvent k) {
 		// TODO Auto-generated method stub
-	/*	if(k.getKeyChar()=='+') {
+		if(k.getKeyChar()=='+') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "+";
-			tf.setText(null);
 		}
 		else if(k.getKeyChar()=='-') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "-";
-			tf.setText(null);
 		}
 		else if(k.getKeyChar()=='/') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "/";
-			tf.setText(null);
 		}
-		else if(k.getKeyChar()=='x'||k.getKeyChar()=='*') {
+		else if(k.getKeyChar()=='x') {
 			Answer = Float.parseFloat(tf.getText());
 			Operation = "x";
-			tf.setText(null);
 		}
-		else if(k.getKeyChar()=='\n'||k.getKeyChar()=='= ') {
+		else if(k.getKeyChar()=='\n') {
 			switch (Operation) {
 			case "+" :
 				tf.setText(String.valueOf(Answer+Float.parseFloat(tf.getText())));
@@ -203,9 +196,6 @@ public class Calculator implements ActionListener,KeyListener{
 				break;
 			}
 		}
-		else if(k.getKeyChar()=='\b') {
-			tf.setText(String.valueOf((Integer.parseInt(tf.getText())/10)));
-		}*/
 	}
 	
 }
