@@ -6,25 +6,21 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Calculator implements ActionListener{
+public class Calculator implements ActionListener,KeyListener{
 	JFrame f;
 	JTextField tf;
 	JPanel pl;
 	String Operation;
 	Float Answer;
 	JButton[] B = new JButton[16];
-	private boolean isFloat(Float a) {
-		Integer temp = Integer.valueOf(String.valueOf(a)) * 10;
-		if(temp==Integer.valueOf(String.valueOf(a*10)))
-			return false;
-		return true;
-	}
 	public Calculator() {
 		// TODO Auto-generated constructor stub
 		int i;
@@ -65,7 +61,7 @@ public class Calculator implements ActionListener{
 			else if(i==13) 
 				str = "-";
 			else if(i==14)
-				str = "%";
+				str = "/";
 			else 
 				str = "=";
 			B[i] = new JButton(str);
@@ -74,6 +70,7 @@ public class Calculator implements ActionListener{
 			B[i].addActionListener(this);
 			pl.add(B[i]);
 		}
+		tf.addKeyListener(this);
 		tf.setForeground(new Color(0,150,136));
 		tf.setFont(new Font("Roboto",13,18));
 		f.add(tf,BorderLayout.NORTH);
@@ -137,8 +134,56 @@ public class Calculator implements ActionListener{
 			case "x" :
 				tf.setText(String.valueOf(Answer*Float.parseFloat(tf.getText())));
 				break;
-			case "%" :
+			case "/" :
 				tf.setText(String.valueOf(Answer/Float.parseFloat(tf.getText())));
+				break;
+			}
+		}
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent k) {
+		// TODO Auto-generated method stub
+		if(k.getKeyChar()=='+') {
+			Answer = Float.parseFloat(tf.getText());
+			Operation = "+";
+		}
+		else if(k.getKeyChar()=='-') {
+			Answer = Float.parseFloat(tf.getText());
+			Operation = "-";
+		}
+		else if(k.getKeyChar()=='/') {
+			Answer = Float.parseFloat(tf.getText());
+			Operation = "/";
+		}
+		else if(k.getKeyChar()=='x') {
+			Answer = Float.parseFloat(tf.getText());
+			Operation = "x";
+		}
+		else if(k.getKeyChar()=='\n') {
+			switch (Operation) {
+			case "+" :
+				tf.setText(String.valueOf(Answer+Float.parseFloat(tf.getText())));
+				break;
+			case "-" :
+				tf.setText(String.valueOf(Answer-Float.parseFloat(tf.getText())));
+				break;
+			case "x" :
+				tf.setText(String.valueOf(Answer*Float.parseFloat(tf.getText())));
+				break;
+			case "/" :
+				tf.setText(String.valueOf(Answer/Float.parseFloat(tf.getText())));
+				break;
+			default:
 				break;
 			}
 		}
