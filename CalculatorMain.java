@@ -20,7 +20,7 @@ public class CalculatorMain {
 	}
 }
 
-public class Calculator implements ActionListener,KeyListener{
+class Calculator implements ActionListener,KeyListener{
 	JFrame f;
 	JTextField tf;
 	JPanel pl;
@@ -40,7 +40,7 @@ public class Calculator implements ActionListener,KeyListener{
 			//Need to do this using queue
 			if(i==0)
 				str = "7";
-			else if(i==1) 
+			else if(i==1)
 				str = "8";
 			else if(i==2)
 				str = "9";
@@ -48,13 +48,13 @@ public class Calculator implements ActionListener,KeyListener{
 				str = "C";
 			else if(i==4)
 				str = "4";
-			else if(i==5) 
+			else if(i==5)
 				str = "5";
 			else if(i==6)
 				str = "6";
 			else if(i==7)
 				str = "x";
-			else if(i==8) 
+			else if(i==8)
 				str = "1";
 			else if(i==9)
 				str = "2";
@@ -64,11 +64,11 @@ public class Calculator implements ActionListener,KeyListener{
 				str = "+";
 			else if(i==12)
 				str = "0";
-			else if(i==13) 
+			else if(i==13)
 				str = "-";
 			else if(i==14)
 				str = "/";
-			else 
+			else
 				str = "=";
 			B[i] = new JButton(str);
 			B[i].setFont(new Font("Roboto", 12, 12));
@@ -87,7 +87,7 @@ public class Calculator implements ActionListener,KeyListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 		if(e.getSource()==B[0])
 			tf.setText(tf.getText()+"7");
 		else if(e.getSource()==B[1])
@@ -118,7 +118,7 @@ public class Calculator implements ActionListener,KeyListener{
 			Operation = "+";
 			tf.setText(null);
 		}
-		else if(e.getSource()==B[12]) 
+		else if(e.getSource()==B[12])
 			tf.setText(tf.getText()+"0");
 		else if(e.getSource()==B[13]) {
 			Answer = Float.parseFloat(tf.getText());
@@ -136,21 +136,21 @@ public class Calculator implements ActionListener,KeyListener{
 				Float temp;
 				temp = Float.parseFloat(tf.getText());
 				Answer += temp;
-				tf.setText(String.valueOf(Answer));	
+				tf.setText(String.valueOf(Answer));
 				break;
 			case "-" :
 				temp = Float.parseFloat(tf.getText());
 				Answer -= temp;
-				tf.setText(String.valueOf(Answer));	
+				tf.setText(String.valueOf(Answer));
 				break;
 			case "x" :
 				temp = Float.parseFloat(tf.getText());
 				Answer *= temp;
-				tf.setText(String.valueOf(Answer));	
+				tf.setText(String.valueOf(Answer));
 				break;
 			case "%" :
 				temp = Float.parseFloat(tf.getText());
-				tf.setText(String.valueOf(Answer/temp));	
+				tf.setText(String.valueOf(Answer/temp));
 				break;
 			}
 		}
@@ -158,7 +158,7 @@ public class Calculator implements ActionListener,KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -209,5 +209,5 @@ public class Calculator implements ActionListener,KeyListener{
 			}
 		}
 	}
-	
+
 }
