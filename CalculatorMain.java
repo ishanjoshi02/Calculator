@@ -14,6 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+public class CalculatorMain {
+	public static void main(String args[]) {
+		Calculator c = new Calculator();
+	}
+}
+
 public class Calculator implements ActionListener,KeyListener{
 	JFrame f;
 	JTextField tf;
